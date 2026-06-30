@@ -4,7 +4,6 @@ import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
 
-# ======= CSS 1X AJA + FIX KURUNG KURAWAL =======
 st.markdown("""
 <style>
     /* 1. Hide Header/Footer/Toolbar Streamlit Cloud */
