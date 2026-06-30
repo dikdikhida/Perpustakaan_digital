@@ -4,76 +4,49 @@ import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
 
+# ======= CSS 1X AJA + FIX KURUNG KURAWAL =======
 st.markdown("""
 <style>
-    /* 1. Hide Header Atas: Share, Star, Edit, 3 titik */
-    [data-testid="stHeader"] {display: none !important;}
-    [data-testid="stToolbar"] {display: none !important;}
-    header {display: none !important;}
-    
-    /* 2. Hide Footer Bawah: Made with Streamlit */
-    [data-testid="stFooter"] {display: none !important;}
-    footer {display: none !important;}
-    
-    /* 3. Hide Tombol Kanan Bawah: Manage app */
-    [data-testid="stDecoration"] {display: none !important;}
-    div[class*="stDeployButton"] {display: none !important;}
+    /* 1. Hide Header/Footer/Toolbar Streamlit Cloud */
+    [data-testid="stHeader"], [data-testid="stToolbar"], header,
+    [data-testid="stFooter"], footer, [data-testid="stDecoration"],
+    div[class*="stDeployButton"] {display: none!important;}
 
-    /* 4. Biar layout full ke atas, nggak ada jarak kosong bekas header */
-    .block-container {padding-top: 1rem !important;}
+    /* 2. Biar layout full ke atas */
+   .block-container {padding-top: 1rem!important;}
 
-    /* ======= THEME KUNING HITAM KAMU ======= */
-    .stApp { background-color: #FFD700; }
-    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }
-    .login-card { animation: fadeInUp 0.6s ease-out; }
-    html, body, [class*="st-"], label, p, div, span, h1, h2, h3, h4, h5, h6,.stMarkdown,.stTextInput label,.stNumberInput label {
+    /* ======= THEME KUNING HITAM ======= */
+   .stApp { background-color: #FFD700; }
+
+    @keyframes fadeInUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    } /* <-- INI YANG KEMARIN KELEWAT TUTUPNYA */
+
+   .login-card { animation: fadeInUp 0.6s ease-out; }
+
+    html, body, [class*="st-"], label, p, div, span, h1, h2, h3, h4, h5, h6,
+   .stMarkdown,.stTextInput label,.stNumberInput label {
         color: #000!important; font-weight: 600;
     }
-    .login-box,.stTabs [data-baseweb="tab-panel"],.stForm,.stExpander, div[data-testid="stVerticalBlock"] > div > div {
+   .login-box,.stTabs [data-baseweb="tab-panel"],.stForm,.stExpander,
+    div[data-testid="stVerticalBlock"] > div > div {
         background-color: #FFF0A0; border: 2px solid #000; border-radius: 10px; padding: 20px;
     }
-    .login-box * { color: #000!important; }
+   .login-box * { color: #000!important; }
     input, div[data-baseweb="input"] > div, div[data-baseweb="select"] > div, textarea {
         background-color: #FFFFFF!important; color: #000!important; border: 2px solid #000!important;
     }
     input::placeholder { color: #555!important; }
     [data-testid="stSidebar"] { background-color: #F0C000; border-right: 2px solid #000; }
     [data-testid="stSidebar"] * { color: #000!important; font-weight: 700; }
-    .stButton>button { background-color: #000; color: #FFD700!important; border: 2px solid #000; border-radius: 6px; font-weight: 800; }
-    .stButton>button:hover { background-color: #FFD700; color: #000!important; }
-    .stTabs [aria-selected="true"] { border-bottom: 3px solid #000!important; }
-    .stTabs [aria-selected="true"] p { color: #000!important; font-weight: 800; }
-    .stTabs [aria-selected="false"] p { color: #444!important; }
-    .stDataFrame,.stDataFrame * { color: #000!important; border-color: #000!important; }
-    .stAlert { background-color: #FFF0A0; border: 2px solid #000; color: #000!important; }
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<style>
-.stApp { background-color: #FFD700; }
-    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }
-.login-card { animation: fadeInUp 0.6s ease-out; }
-    html, body, [class*="st-"], label, p, div, span, h1, h2, h3, h4, h5, h6,.stMarkdown,.stTextInput label,.stNumberInput label {
-        color: #000!important; font-weight: 600;
-    }
-.login-box,.stTabs [data-baseweb="tab-panel"],.stForm,.stExpander, div[data-testid="stVerticalBlock"] > div > div {
-        background-color: #FFF0A0; border: 2px solid #000; border-radius: 10px; padding: 20px;
-    }
-.login-box * { color: #000!important; }
-    input, div[data-baseweb="input"] > div, div[data-baseweb="select"] > div, textarea {
-        background-color: #FFFFFF!important; color: #000!important; border: 2px solid #000!important;
-    }
-    input::placeholder { color: #555!important; }
-    [data-testid="stSidebar"] { background-color: #F0C000; border-right: 2px solid #000; }
-    [data-testid="stSidebar"] * { color: #000!important; font-weight: 700; }
-.stButton>button { background-color: #000; color: #FFD700!important; border: 2px solid #000; border-radius: 6px; font-weight: 800; }
-.stButton>button:hover { background-color: #FFD700; color: #000!important; }
-.stTabs [aria-selected="true"] { border-bottom: 3px solid #000!important; }
-.stTabs [aria-selected="true"] p { color: #000!important; font-weight: 800; }
-.stTabs [aria-selected="false"] p { color: #444!important; }
-.stDataFrame,.stDataFrame * { color: #000!important; border-color: #000!important; }
-.stAlert { background-color: #FFF0A0; border: 2px solid #000; color: #000!important; }
+   .stButton>button { background-color: #000; color: #FFD700!important; border: 2px solid #000; border-radius: 6px; font-weight: 800; }
+   .stButton>button:hover { background-color: #FFD700; color: #000!important; }
+   .stTabs [aria-selected="true"] { border-bottom: 3px solid #000!important; }
+   .stTabs [aria-selected="true"] p { color: #000!important; font-weight: 800; }
+   .stTabs [aria-selected="false"] p { color: #444!important; }
+   .stDataFrame,.stDataFrame * { color: #000!important; border-color: #000!important; }
+   .stAlert { background-color: #FFF0A0; border: 2px solid #000; color: #000!important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -185,7 +158,7 @@ class CircularSingle:
     def to_list(self):
         if not self.head: return []
         data, bantu, no = [], self.head, 1
-        while True: 
+        while True:
             data.append(f"{no}. {bantu.data}")
             bantu = bantu.next; no += 1
             if bantu == self.head: break
@@ -205,7 +178,7 @@ class CircularDouble:
     def to_list(self):
         if not self.head: return []
         data, bantu, no = [], self.head, 1
-        while True: 
+        while True:
             data.append(f"{no}. {bantu.data}")
             bantu = bantu.next; no += 1
             if bantu == self.head: break
@@ -260,10 +233,9 @@ def import_buku_from_df(df):
         except: continue
     return count_baru
 
-def validate_id(id_str): 
-    """Validasi ID jadi int atau return None kalau kosong/salah"""
+def validate_id(id_str):
     if not id_str: return None
-    try: 
+    try:
         id_int = int(id_str)
         return id_int if id_int >= 1 else None
     except: return None
@@ -276,7 +248,7 @@ if 'inventaris' not in st.session_state:
     st.session_state.favorit = CircularSingle()
     st.session_state.rekomendasi = CircularDouble()
     st.session_state.tree = BinarySearchTree()
-    
+
 inventaris = st.session_state.inventaris; riwayat = st.session_state.riwayat; antrian = st.session_state.antrian
 favorit = st.session_state.favorit; rekomendasi = st.session_state.rekomendasi; tree = st.session_state.tree
 
@@ -285,10 +257,10 @@ def binary_search(data, keyword):
     kiri, kanan = 0, len(data)-1
     while kiri <= kanan:
         tengah = (kiri+kanan)//2
-        if data[tengah].judul.lower() == keyword.lower(): return data[tengah]
+        if data[tengah].judul.lower() == keyword.lower(): return [data[tengah]] # <-- return list biar sama formatnya
         elif keyword.lower() < data[tengah].judul.lower(): kanan = tengah-1
         else: kiri = tengah+1
-    return None
+    return []
 def bubble_sort(data): return sorted(data, key=lambda x: x.judul)
 def selection_sort(data): return sorted(data, key=lambda x: x.judul)
 def merge_sort(data): return sorted(data, key=lambda x: x.judul)
@@ -313,17 +285,17 @@ if menu == "Kelola Buku":
                 id_buku_str = st.text_input("ID Buku", value="", placeholder="Masukkan ID Angka")
             with col2:
                 tahun = st.number_input("Tahun Terbit", step=1, min_value=1900, max_value=2026, value=None, placeholder="Contoh: 2024")
-            
+
             judul = st.text_input("Judul Buku", value="", placeholder="Masukkan Judul Buku")
             penulis = st.text_input("Penulis", value="", placeholder="Masukkan Nama Penulis")
-            
+
             if st.form_submit_button("Tambah Buku"):
                 id_buku = validate_id(id_buku_str)
-                if not judul or not penulis or id_buku is None or tahun is None: 
+                if not judul or not penulis or id_buku is None or tahun is None:
                     st.error("Semua field wajib diisi dengan benar")
-                elif inventaris.cari_id(id_buku): 
+                elif inventaris.cari_id(id_buku):
                     st.error("ID sudah ada")
-                else: 
+                else:
                     buku_baru = Buku(id_buku, judul, penulis, tahun)
                     inventaris.tambah_buku(buku_baru); tree.insert(buku_baru)
                     st.session_state.form_key += 1; st.success("Buku berhasil ditambahkan"); st.rerun()
@@ -357,7 +329,7 @@ if menu == "Kelola Buku":
             if st.button("Simpan Perubahan"):
                 inventaris.edit(id_edit, judul, penulis, tahun); st.success("Data berhasil diubah"); st.rerun()
         elif id_edit_str: st.warning("ID tidak ditemukan")
-    
+
     with tab4:
         id_hapus_str = st.text_input("ID Buku yang dihapus", value="", placeholder="Masukkan ID Angka", key="hapus_id_str")
         id_hapus = validate_id(id_hapus_str)
@@ -397,10 +369,18 @@ elif menu == "Searching":
         if not key: st.warning("Masukkan keyword dulu")
         elif opsi == "Linear Search":
             hasil = linear_search(data, key)
-            st.dataframe(pd.DataFrame([b.to_dict() for b in hasil]), hide_index=True) if hasil else st.warning("Tidak ditemukan.")
+            # ===== FIX: JANGAN PAKE TERNARY 1 BARIS =====
+            if hasil:
+                st.dataframe(pd.DataFrame([b.to_dict() for b in hasil]), hide_index=True, use_container_width=True)
+            else:
+                st.warning("Tidak ditemukan.")
         else:
-            hasil = binary_search(quick_sort(data), key)
-            st.dataframe(pd.DataFrame([hasil.to_dict()]), hide_index=True) if hasil else st.warning("Tidak ditemukan.")
+            data_sorted = merge_sort(data) # Binary search wajib data sorted
+            hasil = binary_search(data_sorted, key)
+            if hasil:
+                st.dataframe(pd.DataFrame([b.to_dict() for b in hasil]), hide_index=True, use_container_width=True)
+            else:
+                st.warning("Tidak ditemukan.")
 
 elif menu == "Sorting":
     st.subheader("Sorting Engine")
@@ -409,7 +389,9 @@ elif menu == "Sorting":
         data = inventaris.to_list()
         func = {"Bubble Sort": bubble_sort, "Selection Sort": selection_sort, "Merge Sort": merge_sort, "Quick Sort": quick_sort}
         hasil = func[opsi](data)
-        st.dataframe(pd.DataFrame([b.to_dict() for b in hasil]), hide_index=True) if hasil else st.info("Data kosong")
+        if hasil:
+            st.dataframe(pd.DataFrame([b.to_dict() for b in hasil]), hide_index=True, use_container_width=True)
+        else: st.info("Data kosong")
 
 elif menu == "Tree":
     st.subheader("Operasi Binary Search Tree by ID")
@@ -419,7 +401,8 @@ elif menu == "Tree":
         if st.button("Tampilkan Traversal"):
             func = {"Inorder": tree.inorder_list, "Preorder": tree.preorder_list, "Postorder": tree.postorder_list}
             data = func[opsi]()
-            st.dataframe(pd.DataFrame([b.to_dict() for b in data]), hide_index=True) if data else st.info("Tree kosong")
+            if data: st.dataframe(pd.DataFrame([b.to_dict() for b in data]), hide_index=True, use_container_width=True)
+            else: st.info("Tree kosong")
     with col2:
         st.divider()
         id_cari_str = st.text_input("Cari ID Buku di Tree", value="", placeholder="Masukkan ID Angka")
@@ -429,7 +412,8 @@ elif menu == "Tree":
             if id_cari is None: st.warning("Masukkan ID yang valid dulu")
             else:
                 hasil = tree.search(id_cari)
-                st.json(hasil.to_dict()) if hasil else st.warning("Data tidak ditemukan.")
+                if hasil: st.json(hasil.to_dict())
+                else: st.warning("Data tidak ditemukan.")
 
 elif menu == "Laporan":
     st.subheader("Laporan Perpustakaan")
@@ -437,7 +421,7 @@ elif menu == "Laporan":
     with col1:
         st.metric("Jumlah Buku", len(inventaris.to_list()))
         st.write("#### Daftar Buku")
-        if inventaris.to_list(): st.dataframe(pd.DataFrame([b.to_dict() for b in inventaris.to_list()]), hide_index=True)
+        if inventaris.to_list(): st.dataframe(pd.DataFrame([b.to_dict() for b in inventaris.to_list()]), hide_index=True, use_container_width=True)
         else: st.info("Belum ada buku.")
         st.write("#### Buku Favorit"); st.code("\n".join(favorit.to_list()) or "-")
     with col2:
