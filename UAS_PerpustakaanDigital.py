@@ -4,7 +4,6 @@ import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
 
-# ======= HIDE SEMUA TOOLBAR STREAMLIT CLOUD =======
 st.markdown("""
 <style>
     /* 1. Hide Header Atas: Share, Star, Edit, 3 titik */
