@@ -3,20 +3,50 @@ import pandas as pd
 import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
+
+# ======= HIDE SEMUA TOOLBAR STREAMLIT CLOUD =======
 st.markdown("""
 <style>
-    /* Sembunyikan Toolbar Streamlit Cloud: Share, Star, Edit, Manage app */
-    #MainMenu {visibility: hidden;}
-    header {visibility: hidden;}
-    footer {visibility: hidden;}
+    /* 1. Hide Header Atas: Share, Star, Edit, 3 titik */
+    [data-testid="stHeader"] {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    header {display: none !important;}
     
-    /* Sembunyikan tombol "Deploy" / "Manage app" pojok kanan bawah */
-    div[data-testid="stToolbar"] {display: none;}
-    div[data-testid="stDecoration"] {display: none;}
+    /* 2. Hide Footer Bawah: Made with Streamlit */
+    [data-testid="stFooter"] {display: none !important;}
+    footer {display: none !important;}
     
-    /* CSS tema kamu yang lain... */
+    /* 3. Hide Tombol Kanan Bawah: Manage app */
+    [data-testid="stDecoration"] {display: none !important;}
+    div[class*="stDeployButton"] {display: none !important;}
+
+    /* 4. Biar layout full ke atas, nggak ada jarak kosong bekas header */
+    .block-container {padding-top: 1rem !important;}
+
+    /* ======= THEME KUNING HITAM KAMU ======= */
     .stApp { background-color: #FFD700; }
-    ...
+    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }
+    .login-card { animation: fadeInUp 0.6s ease-out; }
+    html, body, [class*="st-"], label, p, div, span, h1, h2, h3, h4, h5, h6,.stMarkdown,.stTextInput label,.stNumberInput label {
+        color: #000!important; font-weight: 600;
+    }
+    .login-box,.stTabs [data-baseweb="tab-panel"],.stForm,.stExpander, div[data-testid="stVerticalBlock"] > div > div {
+        background-color: #FFF0A0; border: 2px solid #000; border-radius: 10px; padding: 20px;
+    }
+    .login-box * { color: #000!important; }
+    input, div[data-baseweb="input"] > div, div[data-baseweb="select"] > div, textarea {
+        background-color: #FFFFFF!important; color: #000!important; border: 2px solid #000!important;
+    }
+    input::placeholder { color: #555!important; }
+    [data-testid="stSidebar"] { background-color: #F0C000; border-right: 2px solid #000; }
+    [data-testid="stSidebar"] * { color: #000!important; font-weight: 700; }
+    .stButton>button { background-color: #000; color: #FFD700!important; border: 2px solid #000; border-radius: 6px; font-weight: 800; }
+    .stButton>button:hover { background-color: #FFD700; color: #000!important; }
+    .stTabs [aria-selected="true"] { border-bottom: 3px solid #000!important; }
+    .stTabs [aria-selected="true"] p { color: #000!important; font-weight: 800; }
+    .stTabs [aria-selected="false"] p { color: #444!important; }
+    .stDataFrame,.stDataFrame * { color: #000!important; border-color: #000!important; }
+    .stAlert { background-color: #FFF0A0; border: 2px solid #000; color: #000!important; }
 </style>
 """, unsafe_allow_html=True)
 
