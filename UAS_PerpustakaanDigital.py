@@ -3,6 +3,22 @@ import pandas as pd
 import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
+st.markdown("""
+<style>
+    /* Sembunyikan Toolbar Streamlit Cloud: Share, Star, Edit, Manage app */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    
+    /* Sembunyikan tombol "Deploy" / "Manage app" pojok kanan bawah */
+    div[data-testid="stToolbar"] {display: none;}
+    div[data-testid="stDecoration"] {display: none;}
+    
+    /* CSS tema kamu yang lain... */
+    .stApp { background-color: #FFD700; }
+    ...
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
