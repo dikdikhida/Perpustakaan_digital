@@ -4,32 +4,7 @@ import time
 
 st.set_page_config(page_title="Sistem Perpustakaan", layout="wide", initial_sidebar_state="expanded")
 
-# ======= THEME CSS KUNING HITAM FIXED =======
-st.markdown("""
-<style>
-    [data-testid="stHeader"], [data-testid="stToolbar"], header,
-    [data-testid="stFooter"], footer, [data-testid="stDecoration"] {display: none!important;}
-   .block-container {padding-top: 1rem!important;}
-  .stApp { background-color: #FFD700!important; }
-    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
- .login-card { animation: fadeInUp 0.6s ease-out; }
-    * { color: #000!important; font-weight: 700!important; }
- .login-box,.stTabs [data-baseweb="tab-panel"],.stForm,.stExpander, div[data-testid="stVerticalBlock"] > div > div {
-        background-color: #FFF0A0!important; border: 2px solid #000!important; border-radius: 10px; padding: 20px;
-    }
- .login-box * { color: #000!important; }
-    input, div[data-baseweb="input"] > div, textarea {
-        background-color: #FFFFFF!important; color: #000!important; border: 2px solid #000!important; font-weight: 700!important;
-    }
-    [data-testid="stSidebar"] { background-color: #F0C000!important; border-right: 2px solid #000!important; }
-    [data-testid="stSidebar"] * { color: #000!important; font-weight: 800!important; }
-  .stButton>button { background-color: #000!important; color: #FFD700!important; border: 2px solid #000!important; font-weight: 800!important; }
-  .stButton>button:hover { background-color: #FFD700!important; color: #000!important; }
-  .stDataFrame,.stDataFrame * { color: #000!important; border-color: #000!important; }
-  .stAlert { background-color: #FFF0A0!important; border: 2px solid #000!important; color: #000!important; }
-  .stAlert * { color: #000!important; }
-</style>
-""", unsafe_allow_html=True)
+
 
 def check_login():
     if 'logged_in' not in st.session_state: st.session_state.logged_in = False
