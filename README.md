@@ -1,7 +1,6 @@
-*README.md*
-nama Dikdik Hidayatulloh 
-Nim  241011450246
-matkul UAS struktur data 
+nama   : Dikdik Hidayatulloh 
+Nim    : 241011450246
+matkul : UAS struktur data 
 Sistem Manajemen Perpustakaan Digital
 
 Aplikasi Web Perpustakaan berbasis `Streamlit` yang mengimplementasikan 6 Struktur Data + 4 Algoritma Sorting + 2 Algoritma Searching dalam 1 dashboard.
